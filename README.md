@@ -12,10 +12,13 @@ where I'd take that filter today; it is **not a replica of the shipped product**
 
 The app ships both versions behind a toggle, with an **annotation layer** you can switch on:
 
-- **Before · legacy** — an illustrative composite of the class of problems the legacy
-  filter had (not the actual RapNet UI): 8–9px type, ~2.4:1 contrast, 60+ flat checkboxes
-  with 10px hit targets, a fixed 1120px layout, and results only after pressing Search.
-  Red pins mark the audit findings.
+- **Before · legacy** — a from-memory reconstruction of the classic tile-based filter
+  pattern: grey ~2-inch tiles, each with a white scrollable checklist (navy mini scrollbar,
+  navy selection highlights) and a ~30px pill box of selected values above it, plus an
+  expandable Advanced Options section. It preserves the audited problems: 8–9px type,
+  failing contrast, scroll-within-scroll lists, enumeration clicks, ~10px hit targets,
+  a fixed-width layout, and results only after pressing Search. Red pins mark the audit
+  findings. Details are approximate.
 - **After · concept** — the concept redesign: a 12px type floor on a tokenized scale,
   WCAG AA contrast, range-based grade selection that matches how traders actually think
   ("G or better"), progressive disclosure for specialist criteria, a live result count,
@@ -24,13 +27,14 @@ The app ships both versions behind a toggle, with an **annotation layer** you ca
 
 ## Key decisions
 
-| Problem (legacy) | Decision (redesign) |
+| Problem (legacy) | Decision (concept) |
 | --- | --- |
-| 8–9px text, grey-on-grey (~2.4:1) | Tokenized type scale with a 12px floor; AA contrast throughout |
-| 60+ checkboxes, all equal weight | Progressive disclosure: 5 core filters visible, finish + specialist criteria in accordions |
-| "Color D–H" = 5 precise clicks | Contiguous range selector: pick two endpoints, selection reads back as a span |
+| 8–9px text, grey-on-grey contrast | Tokenized type scale with a 12px floor; AA contrast throughout |
+| Checklists scrolling inside 2-inch tiles, inside a scrolling page | Everything visible at its natural size; specialist criteria in accordions, not buried in scroll |
+| "Color D–H" = 5 precise clicks in a scrolling list | Contiguous range selector: pick two endpoints, selection reads back as a span |
+| Selected state as overflowing pills in a 30px box | Removable filter chips in the results header — the full query always visible |
 | Result count only after Search | Live count + results as you filter; polite live region for screen readers |
-| Fixed 1120px, desktop-only | Responsive: sticky sidebar → full-screen sheet with sticky "Show N diamonds" |
+| Fixed-width, desktop-only | Responsive: sticky sidebar → full-screen sheet with sticky "Show N diamonds" |
 | No focus states, no structure | Fieldsets/legends, `aria-pressed`/`aria-sort`, visible focus on every control, full keyboard support |
 
 ## Accessibility checklist
@@ -46,14 +50,14 @@ The app ships both versions behind a toggle, with an **annotation layer** you ca
 
 ## Notes on authenticity
 
-This is a **concept built for my portfolio**, not a replica of RapNet — no proprietary
-Rapaport code, data, or assets are used, and neither view reproduces the actual shipped
-interface. The "before" view illustrates the *category* of problems I audited in the real
-product (sub-readable type, failing contrast, flat checkbox walls, no feedback loop); the
-"after" view shows how I'd solve that problem space today. The accessibility, consistency
-and design-system work I actually shipped at Rapaport is described in the accompanying
-case study at miriamrteller.com. The 240 listings are deterministically generated
-(seeded PRNG) so the demo is stable across loads.
+This is a **concept built for my portfolio** — no proprietary Rapaport code, data, or
+assets are used. The "before" view is reconstructed from memory of the classic tile-based
+filter pattern and is approximate, not pixel-faithful. The "after" view is my own concept
+of where I'd take the problem space today — the redesign that actually shipped at Rapaport
+took a different direction (the same grey cards restructured as full-width horizontal
+blocks) and is described, along with the accessibility and design-system work I led, in
+the accompanying case study at miriamrteller.com. The 240 listings are deterministically
+generated (seeded PRNG) so the demo is stable across loads.
 
 ## Running locally
 

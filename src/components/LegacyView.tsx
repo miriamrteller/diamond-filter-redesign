@@ -1,107 +1,138 @@
-import { type Diamond, CLARITIES, COLORS, FINISH_GRADES, FLUOR, LABS, SHAPES } from '../data'
+import { useState } from 'react'
+import { type Diamond, CLARITIES, COLORS, FLUOR, LABS, SHAPES } from '../data'
 import { Annotation } from './Annotation'
 
 /**
- * Illustrative "before" exhibit — a composite of the class of problems the
- * legacy filter had, not a replica of the real RapNet UI. Every violation
- * here is deliberate: 8–9px type, ~2.4:1 contrast, 60+ flat controls,
- * 10px hit targets, a fixed 1120px layout, and results only after pressing
- * Search. Not a real search UI — the checkboxes are inert props.
+ * "Before" exhibit — reconstructed from memory of the classic RapNet filter
+ * pattern: a grid of grey ~2-inch tiles, each holding a white scrollable
+ * checklist with navy selection highlights and a small pill box of selected
+ * values above the list. Details are approximate; the audit points it
+ * demonstrates (9px type, low contrast, scroll-within-scroll, enumeration
+ * clicks, no live feedback, fixed-width layout) are the real ones.
  */
+
+const FINISH_OPTS = ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor']
+const LOCATIONS = ['Israel', 'USA', 'Belgium', 'India', 'Hong Kong', 'UAE', 'UK', 'South Africa']
+
+function LegacyTile({ title, options, initial, pin }: {
+  title: string
+  options: readonly string[]
+  initial?: string[]
+  pin?: React.ReactNode
+}) {
+  const [sel, setSel] = useState<string[]>(initial ?? [])
+  const toggle = (o: string) =>
+    setSel(sel.includes(o) ? sel.filter((x) => x !== o) : [...sel, o])
+
+  return (
+    <div className="legacy-tile">
+      <h3>{title}{pin}</h3>
+      <div className="legacy-pillbox">
+        {sel.map((s) => (
+          <span className="legacy-pill" key={s}>
+            {s}
+            <button type="button" aria-label={`Remove ${s}`} onClick={() => toggle(s)}>×</button>
+          </span>
+        ))}
+      </div>
+      <div className="legacy-list">
+        {options.map((o) => (
+          <label key={o} className={sel.includes(o) ? 'sel' : ''}>
+            <input type="checkbox" checked={sel.includes(o)} onChange={() => toggle(o)} />
+            {o}
+          </label>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function LegacyView({ annotate, sample }: { annotate: boolean; sample: Diamond[] }) {
+  const [advOpen, setAdvOpen] = useState(false)
   return (
     <div>
       <p className="legacy-note">
-        <b>Illustrative, not a replica.</b> This view recreates the <i>class</i> of problems the
-        legacy filter had — sub-readable type, checkbox walls, no feedback loop — not the actual
-        RapNet interface. All listings are generated. Toggle <b>Annotations</b> for the audit.
+        <b>Reconstructed from memory.</b> The classic RapNet filter pattern — grey tiles, each
+        with a scrollable white checklist, navy selection highlights, and a pill box of selected
+        values. Details are approximate and all listings are generated. Toggle{' '}
+        <b>Annotations</b> for the audit.
       </p>
       <div className="legacy-scroll">
         <div className="legacy">
           <h2>
-            Diamond Search — Advanced
+            Diamond Search
             <Annotation n={1} kind="issue" title="Sub-readable type" show={annotate}>
-              Body text is 9px and group labels are 8px — under any recognized
-              minimum, and the first thing every new user squinted at. The
-              redesign sets a 12px floor and 14px body via design tokens.
+              List items are 9px and tile titles smaller still — below any
+              recognized minimum, and the first thing every new user squinted
+              at. The concept sets a 12px floor and 14px body via design tokens.
             </Annotation>
-            <Annotation n={2} kind="issue" title="Contrast ≈ 2.4:1" show={annotate}>
-              Grey-on-grey text (#9a9a9a on #f4f4f4) fails WCAG AA (4.5:1)
-              across the whole panel — hardest on the traders using this screen
-              eight hours a day.
+            <Annotation n={2} kind="issue" title="Contrast fails AA" show={annotate}>
+              Grey-on-grey labels on grey tiles sit far under WCAG AA&apos;s
+              4.5:1 — hardest on the traders using this screen eight hours a
+              day.
             </Annotation>
           </h2>
-          <div className="legacy-grid">
-            <div className="legacy-box">
-              <h3>
-                Shape
-                <Annotation n={3} kind="issue" title="60+ flat controls" show={annotate}>
-                  Every filter is a wall of checkboxes with equal visual weight —
-                  no hierarchy, no grouping by frequency of use. Finding the one
-                  control you need means scanning all of them.
+          <div className="legacy-tiles">
+            <LegacyTile
+              title="Shape"
+              options={SHAPES}
+              initial={['Round', 'Oval']}
+              pin={
+                <Annotation n={5} kind="issue" title="Selection state in a 30px box" show={annotate}>
+                  Selected values collect as tiny pills in a ~30px input above
+                  each list. Pick more than a few and the pills overflow out of
+                  sight — the current query is never fully visible, and the ×
+                  targets are a few pixels wide.
                 </Annotation>
-              </h3>
-              {SHAPES.map((s) => (
-                <label key={s}><input type="checkbox" tabIndex={-1} readOnly checked={false} />{s}</label>
-              ))}
-            </div>
-            <div className="legacy-box">
-              <h3>
-                Color
+              }
+            />
+            <LegacyTile
+              title="Color"
+              options={COLORS}
+              initial={['D', 'E', 'F', 'G', 'H']}
+              pin={
                 <Annotation n={4} kind="issue" title="Checkbox ≠ range" show={annotate}>
-                  Selecting “D to H” takes five precise 10px clicks. Traders
-                  think in spans (“G or better”); the UI forces enumeration —
-                  and misclicking silently changes the query.
+                  Traders think in spans (“G or better”), but selecting D–H
+                  means five separate clicks inside a scrolling list — and a
+                  misclick silently changes the query. The concept replaces
+                  enumeration with two-tap range selection.
                 </Annotation>
-              </h3>
-              {COLORS.map((c) => (
-                <label key={c}><input type="checkbox" tabIndex={-1} readOnly checked={false} />{c}</label>
-              ))}
-            </div>
-            <div className="legacy-box">
-              <h3>Clarity</h3>
-              {CLARITIES.map((c) => (
-                <label key={c}><input type="checkbox" tabIndex={-1} readOnly checked={false} />{c}</label>
-              ))}
-            </div>
-            <div className="legacy-box">
-              <h3>Cut / Polish / Sym</h3>
-              {(['Cut', 'Polish', 'Symmetry'] as const).map((g) => (
-                <div key={g}>
-                  <h3>{g}</h3>
-                  {FINISH_GRADES.map((f) => (
-                    <label key={f}><input type="checkbox" tabIndex={-1} readOnly checked={false} />{f}</label>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div className="legacy-box">
-              <h3>Fluor / Lab</h3>
-              {FLUOR.map((f) => (
-                <label key={f}><input type="checkbox" tabIndex={-1} readOnly checked={false} />{f}</label>
-              ))}
-              <h3>Lab</h3>
-              {LABS.map((l) => (
-                <label key={l}><input type="checkbox" tabIndex={-1} readOnly checked={false} />{l}</label>
-              ))}
-            </div>
-            <div className="legacy-box">
-              <h3>
-                Measurements
-                <Annotation n={5} kind="issue" title="Everything, always" show={annotate}>
-                  Specialist fields (depth %, table %, ratio…) sit at the same
-                  level as carat and price, although most searches never touch
-                  them. In the redesign they collapse into “More filters”.
+              }
+            />
+            <LegacyTile
+              title="Clarity"
+              options={CLARITIES}
+              pin={
+                <Annotation n={3} kind="issue" title="Scroll-within-scroll" show={annotate}>
+                  Each checklist shows ~6 of its options through a 2-inch
+                  window with its own mini scrollbar, inside a page that also
+                  scrolls. Finding “VS2” means scrolling a tile; checked items
+                  scroll out of view — which is why the pill box exists at all.
                 </Annotation>
-              </h3>
-              {['Carat', 'Price', 'Depth %', 'Table %', 'Ratio', 'Disc %'].map((f) => (
-                <div className="legacy-fieldrow" key={f}>
-                  <span style={{ width: 38 }}>{f}</span>
-                  <input type="text" tabIndex={-1} readOnly placeholder="min" />
-                  <input type="text" tabIndex={-1} readOnly placeholder="max" />
-                </div>
-              ))}
-            </div>
+              }
+            />
+            <LegacyTile title="Cut" options={FINISH_OPTS} />
+            <LegacyTile title="Polish" options={FINISH_OPTS} />
+            <LegacyTile title="Symmetry" options={FINISH_OPTS} />
+            <LegacyTile title="Fluorescence" options={FLUOR} />
+            <LegacyTile title="Lab" options={LABS} />
+            <LegacyTile title="Location" options={LOCATIONS} />
+          </div>
+          <div className="legacy-adv">
+            <button type="button" className="legacy-adv-toggle" onClick={() => setAdvOpen(!advOpen)}>
+              {advOpen ? '▼' : '►'} Advanced Options
+            </button>
+            {advOpen && (
+              <div className="legacy-adv-body">
+                {['Carat', 'Price $/Ct', 'Total Price', 'Depth %', 'Table %', 'L/W Ratio', 'Disc %'].map((f) => (
+                  <div className="legacy-fieldrow" key={f}>
+                    <span>{f}</span>
+                    <input type="text" tabIndex={-1} readOnly placeholder="From" />
+                    <input type="text" tabIndex={-1} readOnly placeholder="To" />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="legacy-actions">
             <button type="button" tabIndex={-1}>Search</button>
@@ -109,14 +140,16 @@ export function LegacyView({ annotate, sample }: { annotate: boolean; sample: Di
             <span className="legacy-hint">
               Results update after Search
               <Annotation n={6} kind="issue" title="No feedback loop" show={annotate}>
-                The result count only appears after pressing Search — users guess
-                at filter combinations, submit, get zero results, loosen a filter,
-                and submit again. The redesign shows a live count while filtering.
+                The result count only appears after pressing Search — users
+                guess at filter combinations, submit, hit zero results, loosen
+                something, and submit again. The concept shows a live count
+                while filtering.
               </Annotation>
-              <Annotation n={7} kind="issue" title="Desktop-only, 1120px fixed" show={annotate}>
-                The layout is a fixed-width table: on a phone or a narrow window
+              <Annotation n={7} kind="issue" title="Desktop-only, fixed width" show={annotate}>
+                The layout is a fixed-width grid: on a phone or a narrow window
                 it horizontally scrolls (try it — this reconstruction preserves
-                that). No focus indicators, no fieldsets, ~10px hit targets.
+                that). No focus indicators, no fieldset structure for screen
+                readers, hit targets around 10px.
               </Annotation>
             </span>
           </div>
