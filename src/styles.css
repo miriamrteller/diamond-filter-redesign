@@ -347,13 +347,9 @@ input, select { font: inherit; color: inherit; }
   overflow: hidden; align-content: flex-start;
 }
 .legacy-pill {
-  display: inline-flex; align-items: center; gap: 1px;
+  display: inline-flex; align-items: center;
   font-size: 8px; line-height: 1; color: #1e3a70; background: #e8edf6;
-  border: 1px solid #9fb0d0; border-radius: 2px; padding: 1px 2px; height: 11px;
-}
-.legacy-pill button {
-  border: 0; background: none; color: #1e3a70; font-size: 9px; line-height: 1;
-  padding: 0 1px; cursor: pointer;
+  border: 1px solid #9fb0d0; border-radius: 2px; padding: 1px 3px; height: 11px;
 }
 .legacy-list {
   flex: 1; min-height: 0; background: #fff; border: 1px solid #b8b8b8;

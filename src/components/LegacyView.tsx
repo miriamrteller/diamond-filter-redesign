@@ -27,12 +27,11 @@ function LegacyTile({ title, options, initial, pin }: {
   return (
     <div className="legacy-tile">
       <h3>{title}{pin}</h3>
+      {/* Pills are display-only, as in the original: no remove affordance —
+          deselecting means finding the item again in the scrolling list. */}
       <div className="legacy-pillbox">
         {sel.map((s) => (
-          <span className="legacy-pill" key={s}>
-            {s}
-            <button type="button" aria-label={`Remove ${s}`} onClick={() => toggle(s)}>×</button>
-          </span>
+          <span className="legacy-pill" key={s}>{s}</span>
         ))}
       </div>
       <div className="legacy-list">
@@ -80,9 +79,10 @@ export function LegacyView({ annotate, sample }: { annotate: boolean; sample: Di
               pin={
                 <Annotation n={5} kind="issue" title="Selection state in a 30px box" show={annotate}>
                   Selected values collect as tiny pills in a ~30px input above
-                  each list. Pick more than a few and the pills overflow out of
-                  sight — the current query is never fully visible, and the ×
-                  targets are a few pixels wide.
+                  each list — display-only, with no way to remove them directly.
+                  Deselecting means scrolling the list to find the item again,
+                  and past a few picks the pills overflow out of sight, so the
+                  current query is never fully visible.
                 </Annotation>
               }
             />

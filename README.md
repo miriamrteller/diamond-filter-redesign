@@ -32,7 +32,7 @@ The app ships both versions behind a toggle, with an **annotation layer** you ca
 | 8–9px text, grey-on-grey contrast | Tokenized type scale with a 12px floor; AA contrast throughout |
 | Checklists scrolling inside 2-inch tiles, inside a scrolling page | Everything visible at its natural size; specialist criteria in accordions, not buried in scroll |
 | "Color D–H" = 5 precise clicks in a scrolling list | Contiguous range selector: pick two endpoints, selection reads back as a span |
-| Selected state as overflowing pills in a 30px box | Removable filter chips in the results header — the full query always visible |
+| Selected state as display-only pills overflowing a 30px box — deselecting means re-finding the item in the list | Removable filter chips in the results header — the full query always visible, any part removable in one click |
 | Result count only after Search | Live count + results as you filter; polite live region for screen readers |
 | Fixed-width, desktop-only | Responsive: sticky sidebar → full-screen sheet with sticky "Show N diamonds" |
 | No focus states, no structure | Fieldsets/legends, `aria-pressed`/`aria-sort`, visible focus on every control, full keyboard support |
