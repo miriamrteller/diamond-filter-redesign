@@ -12,13 +12,14 @@ where I'd take that filter today; it is **not a replica of the shipped product**
 
 The app ships both versions behind a toggle, with an **annotation layer** you can switch on:
 
-- **Before · legacy** — a from-memory reconstruction of the classic tile-based filter
+- **Before · legacy** — a from-memory *representation* of the classic tile-based filter
   pattern: grey ~2-inch tiles, each with a white scrollable checklist (navy mini scrollbar,
   navy selection highlights) and a ~30px pill box of selected values above it, plus an
   expandable Advanced Options section. It preserves the audited problems: 8–9px type,
-  failing contrast, scroll-within-scroll lists, enumeration clicks, ~10px hit targets,
-  a fixed-width layout, and results only after pressing Search. Red pins mark the audit
-  findings. Details are approximate.
+  failing contrast, scroll-within-scroll lists, enumeration clicks, non-removable
+  selection pills, ~10px hit targets, a fixed-width layout, and results only after
+  pressing Search. Red pins mark the audit findings. The filter set and options are
+  representative approximations, not the real list.
 - **After · concept** — the concept redesign: a 12px type floor on a tokenized scale,
   WCAG AA contrast, range-based grade selection that matches how traders actually think
   ("G or better"), progressive disclosure for specialist criteria, a live result count,
@@ -50,14 +51,15 @@ The app ships both versions behind a toggle, with an **annotation layer** you ca
 
 ## Notes on authenticity
 
-This is a **concept built for my portfolio** — no proprietary Rapaport code, data, or
-assets are used. The "before" view is reconstructed from memory of the classic tile-based
-filter pattern and is approximate, not pixel-faithful. The "after" view is my own concept
-of where I'd take the problem space today — the redesign that actually shipped at Rapaport
-took a different direction (the same grey cards restructured as full-width horizontal
-blocks) and is described, along with the accessibility and design-system work I led, in
-the accompanying case study at miriamrteller.com. The 240 listings are deterministically
-generated (seeded PRNG) so the demo is stable across loads.
+**Both views are representations, not copies of RapNet** — no proprietary Rapaport code,
+data, or assets are used. The "before" view is rebuilt from memory of the classic
+tile-based filter pattern; its filter set and options are representative approximations,
+not the real list. The "after" view is my own concept of where I'd take the problem space
+today — the redesign that actually shipped at Rapaport took a different direction (the
+same grey cards restructured as full-width horizontal blocks) and is described, along
+with the accessibility and design-system work I led, in the accompanying case study at
+miriamrteller.com. The 240 listings are deterministically generated (seeded PRNG) so the
+demo is stable across loads.
 
 ## Running locally
 

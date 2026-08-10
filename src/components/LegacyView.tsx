@@ -13,6 +13,9 @@ import { Annotation } from './Annotation'
 
 const FINISH_OPTS = ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor']
 const LOCATIONS = ['Israel', 'USA', 'Belgium', 'India', 'Hong Kong', 'UAE', 'UK', 'South Africa']
+const SHADES = ['None', 'Yellowish', 'Brownish', 'Greenish', 'Grayish', 'Mixed']
+const MILKY = ['No Milky', 'Light Milky', 'Milky']
+const EYE_CLEAN = ['Yes', 'Borderline', 'No']
 
 function LegacyTile({ title, options, initial, pin }: {
   title: string
@@ -51,9 +54,10 @@ export function LegacyView({ annotate, sample }: { annotate: boolean; sample: Di
   return (
     <div>
       <p className="legacy-note">
-        <b>Reconstructed from memory.</b> The classic RapNet filter pattern — grey tiles, each
-        with a scrollable white checklist, navy selection highlights, and a pill box of selected
-        values. Details are approximate and all listings are generated. Toggle{' '}
+        <b>A representation, not a copy.</b> Rebuilt from memory of the classic RapNet filter
+        pattern — grey tiles, each with a scrollable white checklist, navy selection highlights,
+        and a pill box of selected values. The filter set, options and details are
+        representative approximations, and all listings are generated. Toggle{' '}
         <b>Annotations</b> for the audit.
       </p>
       <div className="legacy-scroll">
@@ -117,6 +121,9 @@ export function LegacyView({ annotate, sample }: { annotate: boolean; sample: Di
             <LegacyTile title="Fluorescence" options={FLUOR} />
             <LegacyTile title="Lab" options={LABS} />
             <LegacyTile title="Location" options={LOCATIONS} />
+            <LegacyTile title="Shade" options={SHADES} />
+            <LegacyTile title="Milky" options={MILKY} />
+            <LegacyTile title="Eye Clean" options={EYE_CLEAN} />
           </div>
           <div className="legacy-adv">
             <button type="button" className="legacy-adv-toggle" onClick={() => setAdvOpen(!advOpen)}>

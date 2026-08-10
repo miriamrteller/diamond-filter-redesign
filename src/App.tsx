@@ -23,8 +23,8 @@ export default function App() {
         <div>
           <h1>Diamond Filter Redesign</h1>
           <p className="sub">
-            Interactive case study · a concept redesign informed by my front-end lead work at
-            Rapaport — not a replica of the shipped product · generated data
+            Interactive case study · informed by my front-end lead work at Rapaport · both views
+            are representations, not copies of RapNet · generated data
           </p>
         </div>
         <div className="masthead-controls">
