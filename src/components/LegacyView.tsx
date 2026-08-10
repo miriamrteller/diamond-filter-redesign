@@ -2,19 +2,19 @@ import { type Diamond, CLARITIES, COLORS, FINISH_GRADES, FLUOR, LABS, SHAPES } f
 import { Annotation } from './Annotation'
 
 /**
- * Faithful reconstruction of the pre-redesign filter (2021-era), rebuilt from
- * memory as the "before" exhibit. Every violation here is deliberate:
- * 8–9px type, ~2.4:1 contrast, 60+ flat controls, 10px hit targets,
- * a fixed 1120px layout, and results only after pressing Search.
- * Not a real search UI — the checkboxes are inert props.
+ * Illustrative "before" exhibit — a composite of the class of problems the
+ * legacy filter had, not a replica of the real RapNet UI. Every violation
+ * here is deliberate: 8–9px type, ~2.4:1 contrast, 60+ flat controls,
+ * 10px hit targets, a fixed 1120px layout, and results only after pressing
+ * Search. Not a real search UI — the checkboxes are inert props.
  */
 export function LegacyView({ annotate, sample }: { annotate: boolean; sample: Diamond[] }) {
   return (
     <div>
       <p className="legacy-note">
-        <b>Reconstruction.</b> This is a rebuilt approximation of the legacy filter as it looked
-        when I joined — recreated for this case study, with proprietary data replaced by
-        generated listings. Toggle <b>Annotations</b> to see the audit.
+        <b>Illustrative, not a replica.</b> This view recreates the <i>class</i> of problems the
+        legacy filter had — sub-readable type, checkbox walls, no feedback loop — not the actual
+        RapNet interface. All listings are generated. Toggle <b>Annotations</b> for the audit.
       </p>
       <div className="legacy-scroll">
         <div className="legacy">

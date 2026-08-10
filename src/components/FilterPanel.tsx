@@ -56,7 +56,7 @@ export function FilterPanel({ filters, onChange, resultCount, annotate, sheetOpe
         <h2>
           Filters
           <Annotation n={3} kind="fix" title="Progressive disclosure" show={annotate}>
-            The five filters traders use in ~90% of searches are always visible.
+            The handful of filters behind most searches stays always visible.
             Finish grades and specialist criteria live in collapsed groups below —
             present, but no longer competing for attention with every query.
           </Annotation>

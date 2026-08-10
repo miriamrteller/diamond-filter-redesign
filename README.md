@@ -1,8 +1,9 @@
 # Diamond Filter Redesign — Interactive Case Study
 
-A working React reconstruction of a redesign I led as Senior Front-End Engineer / Team Lead
-at **Rapaport** (2021–2025): turning a dense, desktop-only diamond search filter into an
-accessible, responsive, system-driven one.
+A working React **concept redesign** of a complex diamond search filter — the problem I lived
+in for four years as Senior Front-End Engineer / Team Lead at **Rapaport** (2021–2025), where
+I drove accessibility, consistency and design-system work on the real thing. This demo is
+where I'd take that filter today; it is **not a replica of the shipped product**.
 
 **Live demo:** https://miriamrteller.github.io/diamond-filter-redesign/
 **Full case study:** https://miriamrteller.com/portfolio
@@ -11,10 +12,11 @@ accessible, responsive, system-driven one.
 
 The app ships both versions behind a toggle, with an **annotation layer** you can switch on:
 
-- **Before · 2021** — a faithful reconstruction of the legacy filter: 8–9px type,
-  ~2.4:1 contrast, 60+ flat checkboxes with 10px hit targets, a fixed 1120px layout,
-  and results only after pressing Search. Red pins mark the audit findings.
-- **After · Redesign** — the redesigned filter: a 12px type floor on a tokenized scale,
+- **Before · legacy** — an illustrative composite of the class of problems the legacy
+  filter had (not the actual RapNet UI): 8–9px type, ~2.4:1 contrast, 60+ flat checkboxes
+  with 10px hit targets, a fixed 1120px layout, and results only after pressing Search.
+  Red pins mark the audit findings.
+- **After · concept** — the concept redesign: a 12px type floor on a tokenized scale,
   WCAG AA contrast, range-based grade selection that matches how traders actually think
   ("G or better"), progressive disclosure for specialist criteria, a live result count,
   applied-filter chips, and a mobile filter sheet with 44px targets. Green pins explain
@@ -44,11 +46,14 @@ The app ships both versions behind a toggle, with an **annotation layer** you ca
 
 ## Notes on authenticity
 
-This is a **reconstruction built for my portfolio** — no proprietary Rapaport code,
-data, or assets are used. The 240 listings are deterministically generated
-(seeded PRNG) so the demo is stable across loads. The "before" view is an
-approximation from memory of the UI as it looked when I joined; the "after" view
-reflects the direction I drove in production, rebuilt from scratch here.
+This is a **concept built for my portfolio**, not a replica of RapNet — no proprietary
+Rapaport code, data, or assets are used, and neither view reproduces the actual shipped
+interface. The "before" view illustrates the *category* of problems I audited in the real
+product (sub-readable type, failing contrast, flat checkbox walls, no feedback loop); the
+"after" view shows how I'd solve that problem space today. The accessibility, consistency
+and design-system work I actually shipped at Rapaport is described in the accompanying
+case study at miriamrteller.com. The 240 listings are deterministically generated
+(seeded PRNG) so the demo is stable across loads.
 
 ## Running locally
 

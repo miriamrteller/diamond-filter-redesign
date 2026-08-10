@@ -23,7 +23,8 @@ export default function App() {
         <div>
           <h1>Diamond Filter Redesign</h1>
           <p className="sub">
-            Interactive case study · reconstruction of my redesign work at Rapaport · generated data
+            Interactive case study · a concept redesign informed by my front-end lead work at
+            Rapaport — not a replica of the shipped product · generated data
           </p>
         </div>
         <div className="masthead-controls">
@@ -33,14 +34,14 @@ export default function App() {
               aria-pressed={view === 'legacy'}
               onClick={() => setView('legacy')}
             >
-              Before · 2021
+              Before · legacy
             </button>
             <button
               type="button"
               aria-pressed={view === 'redesign'}
               onClick={() => setView('redesign')}
             >
-              After · Redesign
+              After · concept
             </button>
           </div>
           <button
@@ -94,9 +95,10 @@ export default function App() {
 
       <footer className="context-strip">
         <div className="inner">
-          <b>{fmtNum(ALL.length)} generated listings</b> stand in for live inventory — no
-          proprietary Rapaport data or assets are used. Rebuilt as a working React demo for my
-          portfolio: <a href="https://miriamrteller.com">miriamrteller.com</a>. Type floor 12px ·
+          <b>{fmtNum(ALL.length)} generated listings</b> stand in for live inventory. This is a
+          concept redesign built for my portfolio — informed by my years leading RapNet's front
+          end, not a replica of the shipped product; no proprietary Rapaport code, data or assets
+          are used. <a href="https://miriamrteller.com">miriamrteller.com</a>. Type floor 12px ·
           WCAG AA contrast · full keyboard support · 44px touch targets.
         </div>
       </footer>
