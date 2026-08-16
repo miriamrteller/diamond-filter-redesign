@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/data.ts","./src/filters.ts","./src/main.tsx","./src/components/annotation.tsx","./src/components/dualrange.tsx","./src/components/filterpanel.tsx","./src/components/graderange.tsx","./src/components/legacyview.tsx","./src/components/results.tsx","./src/components/shapeicon.tsx"],"version":"5.6.3"}
