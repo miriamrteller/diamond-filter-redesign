@@ -28,8 +28,11 @@
   --radius: 8px;
   --radius-sm: 6px;
   --tap: 44px;       /* minimum touch target                  */
-  --shadow: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.06);
-  --shadow-lg: 0 8px 24px rgba(16, 24, 40, 0.16);
+  /* Elevation — Material-style key (30%) + ambient (15%) shadow pairs, brand-tinted.
+     Level 1: resting cards · Level 2: raised controls · Level 3: overlays. */
+  --shadow-1: 0 1px 2px rgba(16, 24, 40, 0.3), 0 1px 3px 1px rgba(16, 24, 40, 0.15);
+  --shadow-2: 0 1px 2px rgba(16, 24, 40, 0.3), 0 2px 6px 2px rgba(16, 24, 40, 0.15);
+  --shadow-3: 0 1px 3px rgba(16, 24, 40, 0.3), 0 4px 8px 3px rgba(16, 24, 40, 0.15);
 }
 
 * { box-sizing: border-box; }
@@ -69,6 +72,8 @@ input, select { font: inherit; color: inherit; }
   padding: var(--sp-4) var(--sp-5);
   display: flex; flex-wrap: wrap; gap: var(--sp-3) var(--sp-5);
   align-items: center; justify-content: space-between;
+  box-shadow: var(--shadow-1);
+  position: relative; z-index: 10;
 }
 .masthead h1 { font-size: var(--fs-4); margin: 0; letter-spacing: -0.01em; }
 .masthead .sub { font-size: var(--fs-1); color: var(--c-text-2); margin: 2px 0 0; }
@@ -106,7 +111,7 @@ input, select { font: inherit; color: inherit; }
   position: absolute; z-index: 40; top: calc(100% + 8px); inset-inline-start: 0;
   width: min(320px, 78vw); background: var(--c-text); color: #fff;
   border-radius: var(--radius); padding: var(--sp-3) var(--sp-4);
-  font-size: var(--fs-1); line-height: 1.5; box-shadow: var(--shadow-lg);
+  font-size: var(--fs-1); line-height: 1.5; box-shadow: var(--shadow-3);
   font-weight: 400; text-transform: none; letter-spacing: 0;
 }
 .pin-pop strong { color: #9fd4c3; }
@@ -132,7 +137,7 @@ input, select { font: inherit; color: inherit; }
 .filters {
   width: 338px; flex: none; background: var(--c-surface);
   border: 1px solid var(--c-border); border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-1);
   position: sticky; top: var(--sp-4);
   max-height: calc(100vh - 32px); overflow-y: auto;
 }
@@ -199,12 +204,12 @@ input, select { font: inherit; color: inherit; }
   -webkit-appearance: none; appearance: none; pointer-events: auto;
   width: 20px; height: 20px; border-radius: 50%;
   background: var(--c-surface); border: 2px solid var(--c-primary);
-  box-shadow: var(--shadow); cursor: grab; margin-top: -8px;
+  box-shadow: var(--shadow-2); cursor: grab; margin-top: -8px;
 }
 .dual-track input[type='range']::-moz-range-thumb {
   pointer-events: auto; width: 16px; height: 16px; border-radius: 50%;
   background: var(--c-surface); border: 2px solid var(--c-primary);
-  box-shadow: var(--shadow); cursor: grab;
+  box-shadow: var(--shadow-2); cursor: grab;
 }
 .dual-track input[type='range']::-webkit-slider-runnable-track { height: 4px; background: none; }
 .dual-track input[type='range']::-moz-range-track { height: 4px; background: none; }
@@ -274,7 +279,7 @@ input, select { font: inherit; color: inherit; }
 
 .table-card {
   background: var(--c-surface); border: 1px solid var(--c-border);
-  border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+  border-radius: var(--radius); box-shadow: var(--shadow-1); overflow: hidden;
 }
 .dtable { width: 100%; border-collapse: collapse; }
 .dtable th, .dtable td { padding: 10px 12px; text-align: start; font-size: var(--fs-2); }
@@ -417,7 +422,7 @@ input, select { font: inherit; color: inherit; }
     flex: 1; display: flex; align-items: center; justify-content: center; gap: var(--sp-2);
     min-height: var(--tap); border: 1px solid var(--c-border-strong);
     border-radius: var(--radius); background: var(--c-surface); font-weight: 700;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-2);
   }
   .badge {
     background: var(--c-primary); color: #fff; border-radius: 999px;
@@ -449,7 +454,7 @@ input, select { font: inherit; color: inherit; }
   .cards { display: grid; gap: var(--sp-3); }
   .dcard {
     background: var(--c-surface); border: 1px solid var(--c-border);
-    border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--sp-4);
+    border-radius: var(--radius); box-shadow: var(--shadow-1); padding: var(--sp-4);
   }
   .dcard-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--sp-2); }
   .dcard-title { display: flex; align-items: center; gap: var(--sp-2); font-weight: 700; font-size: var(--fs-3); }
