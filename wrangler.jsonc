@@ -1,0 +1,17 @@
+{
+  "name": "diamond-filter-redesign",
+  "compatibility_date": "2026-08-16",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "routes": [
+    {
+      "pattern": "demo.miriamrteller.com",
+      "custom_domain": true
+    }
+  ]
+}

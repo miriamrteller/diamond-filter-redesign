@@ -5,7 +5,7 @@ in for four years as Senior Front-End Engineer / Team Lead at **Rapaport** (2021
 I drove accessibility, consistency and design-system work on the real thing. This demo is
 where I'd take that filter today; it is **not a replica of the shipped product**.
 
-**Live demo:** https://miriamrteller.github.io/diamond-filter-redesign/
+**Live demo:** https://demo.miriamrteller.com (mirror: https://miriamrteller.github.io/diamond-filter-redesign/)
 **Full case study:** https://miriamrteller.com/portfolio
 
 ## What this demo shows
