@@ -1,7 +1,13 @@
 node_modules/
 dist/
+
+# local scratch: screenshots, packaging scripts, generated bundles
 shots/
-shot.mjs
-shot2.mjs
+v/
+*.mjs
+!vite.config.ts
+demo-single.html
+artifact.html
+*.zip
 *.log
 .DS_Store
